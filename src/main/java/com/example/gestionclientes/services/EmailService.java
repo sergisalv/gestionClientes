@@ -16,7 +16,7 @@ import javax.mail.internet.MimeMessage;
 
 
 
-@Service
+@Service("emailService")
 public class EmailService implements IEmailService{
 
     @Autowired

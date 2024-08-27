@@ -3,6 +3,7 @@ package com.example.gestionclientes.controllers;
 import com.example.gestionclientes.models.Cliente;
 import com.example.gestionclientes.services.IEmailService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +15,7 @@ import java.util.List;
 public class EmailController {
 
     @Autowired
+    @Qualifier("jetMailService")  // Qualifier Igual que Autowired pero nos permite elegir el parámetro que queremos traer
     private IEmailService service;
 
     @GetMapping("api/email")
@@ -23,6 +25,8 @@ public class EmailController {
         to.add("sergisalv@gmail.com");
         String body ="Hola, Gracias por registrarte...";
 
-        service.sendEmail(asunto, to, body);
+        service.enviarEmailDeBienvenida(asunto, to, "Sergio");
+
+
     }
 }
