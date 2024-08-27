@@ -22,12 +22,20 @@ public class JetMailService implements IEmailService{
 
 
 
+
+
     @Override
     public void sendEmail(String asunto, List<String> to, String body) {
+
+        //Todo Introducir tus keys para utilizar tu servicio de correo
+        String apiKey = "apiKey";
+        String apiSecret = "apiSecret";
+
+
             MailjetClient client;
             MailjetRequest request;
             MailjetResponse response;
-            client = new MailjetClient("598dab57cd11a9eb5dca5870bb63ee2e", "7a3ee0282c223be5ba947367d8170210"); //, new ClientOptions("v3.1"));
+            client = new MailjetClient(apiKey, apiSecret); //, new ClientOptions("v3.1"));
         request = new MailjetRequest(Emailv31.resource)
                 .property(Emailv31.MESSAGES, new JSONArray()
                         .put(new JSONObject()
@@ -54,7 +62,7 @@ public class JetMailService implements IEmailService{
     public void enviarEmailDeBienvenida(String asunto, List<String> to, String nombre) {
         Context context = new Context();
         context.setVariable("nombre", nombre);
-        String mensajeHtml = "Pegar aquí el Html"; // no funciona con thymeleaf: templateEngine.process("email", context);
+        String mensajeHtml =  templateEngine.process("email", context);
         sendEmail(asunto, to, mensajeHtml);
     }
 }
