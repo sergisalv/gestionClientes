@@ -20,18 +20,13 @@ public class JetMailService implements IEmailService{
     @Autowired
     private TemplateEngine templateEngine;
 
-
-
+    //Todo agregar credenciales de usuario y password de mailjet
+    String apiKey = "apiKey";
+    String apiSecret = "apiSecret";
 
 
     @Override
     public void sendEmail(String asunto, List<String> to, String body) {
-
-        //Todo Introducir tus keys para utilizar tu servicio de correo
-        String apiKey = "apiKey";
-        String apiSecret = "apiSecret";
-
-
             MailjetClient client;
             MailjetRequest request;
             MailjetResponse response;
